@@ -19,7 +19,8 @@ class Dashboard extends React.Component{
     }
 
     componentDidMount(){
-        //this.interval = setInterval(this.poll, this.state.delay);
+        //comment out to turn on/off
+        this.interval = setInterval(this.poll, this.state.delay);
         this.poll();
     }
 
@@ -29,7 +30,7 @@ class Dashboard extends React.Component{
 
     poll = () => {
         this.setState({pollingCount: this.state.pollingCount + 1, oldDonations: this.state.donations});
-        fetch('https://events.dancemarathon.com/api/events/4589/donations?limit=5')
+        fetch('https://events.dancemarathon.com/api/events/5130/donations?limit=5')
             .then(response => response.json())
             .then(data => {
                 this.setState({donations: data})
@@ -59,7 +60,7 @@ class Dashboard extends React.Component{
                 <RecentDonations donations={this.state.donations}/>
             </div>
         </Row>
-        <Row style={{display: "inline-block"}}>
+       /* <Row style={{display: "inline-block"}}>
             <div className="countdown">
                 <span>🚀</span>
                 <Countdown date={new Date("Feb 26, 2022 23:45:00")} daysInHours={true}/>
@@ -67,6 +68,7 @@ class Dashboard extends React.Component{
                 <span>🚀</span>
             </div>
         </Row>
+        */
         {/* <Row>
             <div className="">
                 <Leaderboard title={"Test"} leaders={this.state.teamLeaders}/>
